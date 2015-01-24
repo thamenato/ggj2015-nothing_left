@@ -36,6 +36,7 @@ public class Char : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
     {
+		print (other.name);
 		switch(other.name){
 		case "Collider_Armario":
                 capeta.text = "No Armario";
@@ -48,7 +49,7 @@ public class Char : MonoBehaviour {
         switch (other.name)
         {
             case "Collider_Armario":
-                capeta.text = "Sair do Armario";
+                capeta.text = "";
                 break;
         }
     }
