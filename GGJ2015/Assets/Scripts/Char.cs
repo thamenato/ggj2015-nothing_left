@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Char : MonoBehaviour {
 	
 	float charSpeed=5f;
+    public Text capeta;
 
 	protected Animator animator;
 	// Use this for initialization
 	void Start () {
-		animator=GetComponent<Animator>();
-	}
+        animator = GetComponent<Animator>();
+        
+    
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,13 +34,22 @@ public class Char : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other) {
+	void OnTriggerEnter(Collider other) 
+    {
 		switch(other.name){
 		case "Collider_Armario":
+                capeta.text = "No Armario";
 			break;
 		}
+    }
 
-
-
-	}
+    void OnTriggerExit(Collider other)
+    {
+        switch (other.name)
+        {
+            case "Collider_Armario":
+                capeta.text = "Sair do Armario";
+                break;
+        }
+    }
 }
