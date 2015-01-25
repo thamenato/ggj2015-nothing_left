@@ -4,7 +4,7 @@ using System.Collections;
 public class Cen01_script : MonoBehaviour {
 	
 	GameController gameController;
-
+	Animator animator;
 	// Use this for initialization
 	void Start () {
 		var find_gameController = GameObject.Find ("GameController");
@@ -13,7 +13,15 @@ public class Cen01_script : MonoBehaviour {
 		else
 			gameController = find_gameController.GetComponent<GameController>();	
 	
+
+		var find_charAnimator = GameObject.Find ("Char");
+		if(find_charAnimator == null)
+			print ("Char not found");
+		else
+			animator = find_charAnimator.GetComponent<Animator>();
+
 		gameController.showBarraDisposicao();
+		animator.Play("Deitado");
 	}
 
 }
