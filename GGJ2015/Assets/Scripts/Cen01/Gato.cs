@@ -36,11 +36,21 @@ public class Gato : MonoBehaviour {
 			canvas_actionText.text = Action_Text;
 			if(Input.GetKeyDown(KeyCode.Space)){
 				activated = true;
+				StartCoroutine(TrocaSprite());
 				char_animator.Play("CarinhoGato");
+
 			}
 		}
 		else
 			canvas_actionText.text = "";
+	}
+
+	IEnumerator TrocaSprite(){
+		gameObject.GetComponent<SpriteRenderer>().sprite = gatoSprite[0];
+		//playSound
+		yield return new WaitForSeconds(1.5f);
+		gameObject.GetComponent<SpriteRenderer>().sprite = gatoSprite[1];
+
 	}
 
 	void OnTriggerExit(Collider other){
