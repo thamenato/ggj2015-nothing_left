@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 44c46ab8d0c32814bb6c23a014b003d1
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spritesheet_0
+    21300002: Spritesheet_1
+    21300004: Spritesheet_2
+    21300006: Spritesheet_3
+    21300008: Char_Idle1
+    21300010: Char_Idle2
+    21300012: Char_deitado1
+    21300014: Char_deitado2
+    21300016: Char_deitado3
+    21300018: Char_Pegar1
+    21300020: Char_Pegar2
+    21300022: Char_carinho
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_Idle1
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_Idle2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 260
+        width: 120
+        height: 260
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_deitado1
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 196
+        width: 259
+        height: 58
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_deitado2
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 0
+        width: 216
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_deitado3
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 0
+        width: 113
+        height: 185
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_Pegar1
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 0
+        width: 111
+        height: 260
+      alignment: 9
+      pivot: {x: .688612401, y: .50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_Pegar2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 113
+        height: 260
+      alignment: 9
+      pivot: {x: .712821543, y: .509578526}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Char_carinho
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 1
+        width: 115
+        height: 258
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
