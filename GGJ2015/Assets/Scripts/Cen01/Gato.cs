@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Gato : MonoBehaviour {
 
+	public Sprite[] gatoSprite;
+
 	public string Action_Text;
 	Text canvas_actionText;
 	Transform char_transform;
