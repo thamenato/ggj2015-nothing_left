@@ -4,13 +4,21 @@ using System.Collections;
 public class PowerBar : MonoBehaviour {
 
 	public GameObject barra;
-	public float disposicao;
+	//public float disposicao;
 	private GameObject camera;
-
+	public float reducao;
+	private GameController gameController;
 
 	// Use this for initialization
 	void Start () {
 	
+		var findGC = GameObject.Find("GameController");
+
+		if(findGC == null)
+			print ("game controller not found");
+		else
+			gameController = findGC.GetComponent<GameController>();
+
 	}
 	
 	// Update is called once per frame
@@ -20,10 +28,10 @@ public class PowerBar : MonoBehaviour {
 
 		transform.position = new Vector3(camera.transform.position.x + 2, transform.position.y, transform.position.z);
 
-		if(disposicao >= 0)
-			barra.transform.localScale = new Vector3(disposicao, 1, 1);
+		if(gameController.getDisposicao() >= 0)
+			barra.transform.localScale = new Vector3(gameController.getDisposicao(), 1, 1);
 
-		disposicao -= Time.deltaTime * 0.01f;
+		gameController.diminuiDisposicao (Time.deltaTime * reducao);
 
 	}
 }
