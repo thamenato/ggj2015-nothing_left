@@ -38,8 +38,15 @@ public class Char : MonoBehaviour {
     {
 		print (other.name);
 		switch(other.name){
-		case "Collider_Armario":
-                capeta.text = "No Armario";
+		
+		case "Collider_Pai":
+			capeta.text = "Talk to Dad";
+			break;
+		case "Cen3_00_Fundo":
+			capeta.text = "Leave home";
+			break;
+		case "Cen3_01_Controle":
+			capeta.text = "Take the remote control";
 			break;
 		}
     }
@@ -51,6 +58,15 @@ public class Char : MonoBehaviour {
             case "Collider_Armario":
                 capeta.text = "";
                 break;
+			case "Collider_Pai":
+				capeta.text = "";
+				break;
+			case "Cen3_00_Fundo":
+				capeta.text = "";
+				break;
+			case "Cen3_01_Controle":
+				capeta.text = "";
+				break;
         }
     }
 }
