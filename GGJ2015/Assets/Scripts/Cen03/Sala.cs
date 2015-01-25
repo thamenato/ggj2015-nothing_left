@@ -54,6 +54,7 @@ public class Sala : MonoBehaviour {
 						pegaControle = 2;
 						gameObject.renderer.enabled=false;
 						gameObject.collider.enabled=false;
+						canvas_actionText.text = "";
 					}
 				}
 				break;

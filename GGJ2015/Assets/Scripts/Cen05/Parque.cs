@@ -12,7 +12,11 @@ public class Parque : MonoBehaviour {
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
-	
+	Animator animator;
+
+	bool LadyWalksAway=false;
+	public GameObject Lady;
+
 	// Use this for initialization
 	void Start () {
 		// Seeks for 'actionText' inside Canvas and returns it to local variable actionText
@@ -54,14 +58,35 @@ public class Parque : MonoBehaviour {
 				{}
 			}
 		if(gameObject.name=="Collider_Moca")
-			if (other.name == "Char"){
+			if (other.name == "Char" && !LadyWalksAway){
 				canvas_actionText.text = "Talk to Pretty Woman";
-				if(Input.GetKeyDown(KeyCode.Space))
-				{}
+				if(Input.GetKeyDown(KeyCode.Space)){
+					canvas_actionText.text = "She Left Me =/";
+					animator = GameObject.Find("Moca").GetComponent<Animator>();
+					animator.Play("WalkingMoca");
+					LadyWalksAway=true;
+					char_animator.SetBool("blocked", true);
+
+				}
 			}
 		
 	}
-	
+
+	void Update(){
+		if(gameObject.name=="Collider_Moca"){
+			if(LadyWalksAway){
+				Lady.transform.position = Vector3.Lerp(Lady.transform.position, new Vector3(10,Lady.transform.position.y, Lady.transform.position.z), 1f*Time.deltaTime);
+			}
+
+			if(Lady.transform.position.x>7){
+				char_animator.SetBool("blocked", false);
+				Lady.gameObject.renderer.enabled=false;
+			}
+		}
+
+	}
+
+
 	IEnumerator TrocaSprite(){
 		Churros[0].gameObject.renderer.enabled=false;
 		Churros[1].gameObject.renderer.enabled=true;
