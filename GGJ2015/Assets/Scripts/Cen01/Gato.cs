@@ -42,9 +42,8 @@ public class Gato : MonoBehaviour {
 			canvas_actionText.text = Action_Text;
 			if(Input.GetKeyDown(KeyCode.Space)){
 				activated = true;
-				StartCoroutine(TrocaSprite());
 				char_animator.Play("CarinhoGato");
-
+				randomReaction();
 			}
 		}
 		else
@@ -52,16 +51,24 @@ public class Gato : MonoBehaviour {
 	}
 
 	void randomReaction(){
-
+		int val = Random.Range(0, 10);
+		print ("Gato rand: " + val);
+		if(val <= 5)
+			gatoRonrona();
+		else
+			gatoArranha();
 	}
 
 	void gatoRonrona(){
+		print ("Gato ronrona");
 		gameController.aumentaSatisfacao(0.1f);
 
 	}
 
 	void gatoArranha(){
+		print ("Gato arranha");
 		gameController.diminuiSatisfacao(0.1f);
+		StartCoroutine(TrocaSprite());
 	}
 
 	IEnumerator TrocaSprite(){
