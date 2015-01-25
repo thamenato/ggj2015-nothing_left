@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour {
 	public float disposicao = 1f;
 	public float satisfacao = 0f;
 
+	public GameObject barraDisposicao;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -18,31 +20,34 @@ public class GameController : MonoBehaviour {
 
 	void Awake(){
 		DontDestroyOnLoad(this);
-		//DontDestroyOnLoad(audio);
 	}
 
 	public void diminuiSatisfacao(float val){
-		this.satisfacao -= val;
+		satisfacao -= val;
 	}
 
 	public void diminuiDisposicao(float val){
-		this.disposicao -= val;
+		disposicao -= val;
 	}
 
 	public void aumentaSatisfacao(float val){
-		this.satisfacao += val;
+		satisfacao += val;
 	}
 	
 	public void aumentaDisposicao(float val){
-		this.disposicao += val;
+		disposicao += val;
 	}
 
 	public float getSatisfacao(){
-		return this.satisfacao;
+		return satisfacao;
 	}
 
 	public float getDisposicao(){
-		return this.disposicao;
+		return disposicao;
+	}
+
+	public void showBarraDisposicao(){
+		DontDestroyOnLoad(Instantiate(barraDisposicao, barraDisposicao.transform.position, Quaternion.identity));		                 
 	}
 
 }

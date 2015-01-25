@@ -71,7 +71,7 @@ public class Char : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-		capeta.text = "";
+		//capeta.text = "";
         /*switch (other.name)
         {
             case "Collider_Armario":

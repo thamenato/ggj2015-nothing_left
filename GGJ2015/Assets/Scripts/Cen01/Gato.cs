@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class Gato : MonoBehaviour {
 
 	public Sprite[] gatoSprite;
-
+	public float satisfacao;
+	public float disposicao;
 	public string Action_Text;
 	Text canvas_actionText;
 	Transform char_transform;
@@ -42,7 +43,7 @@ public class Gato : MonoBehaviour {
 			canvas_actionText.text = Action_Text;
 			if(Input.GetKeyDown(KeyCode.Space)){
 				activated = true;
-				StartCoroutine(TrocaSprite());
+				randomReaction();
 				char_animator.Play("CarinhoGato");
 
 			}
@@ -52,16 +53,22 @@ public class Gato : MonoBehaviour {
 	}
 
 	void randomReaction(){
-
+		var val = Random.Range(0, 10);
+		if(val <= 5)
+			gatoRonrona();
+		else
+			gatoArranha();
 	}
 
 	void gatoRonrona(){
-		gameController.aumentaSatisfacao(0.1f);
+		gameController.aumentaSatisfacao(satisfacao);
+		gameController.diminuiDisposicao(disposicao);
 
 	}
 
 	void gatoArranha(){
-		gameController.diminuiSatisfacao(0.1f);
+		gameController.diminuiSatisfacao(satisfacao);
+		gameController.diminuiDisposicao(disposicao);
 	}
 
 	IEnumerator TrocaSprite(){
