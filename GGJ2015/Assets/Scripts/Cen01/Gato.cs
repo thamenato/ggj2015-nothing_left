@@ -11,6 +11,7 @@ public class Gato : MonoBehaviour {
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
+	GameController gameController;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,11 @@ public class Gato : MonoBehaviour {
 			char_transform = find_Char.GetComponent<Transform>();
 			char_animator = find_Char.GetComponent<Animator>();
 		}
+		var find_gameController = GameObject.Find ("GameController");
+		if (find_gameController == null)
+			print ("GameController not found");
+		else
+			gameController = find_gameController.GetComponent<GameController>();	
 	}
 
 	void OnTriggerStay(Collider other){
@@ -43,6 +49,19 @@ public class Gato : MonoBehaviour {
 		}
 		else
 			canvas_actionText.text = "";
+	}
+
+	void randomReaction(){
+
+	}
+
+	void gatoRonrona(){
+		gameController.aumentaSatisfacao(0.1f);
+
+	}
+
+	void gatoArranha(){
+		gameController.diminuiSatisfacao(0.1f);
 	}
 
 	IEnumerator TrocaSprite(){

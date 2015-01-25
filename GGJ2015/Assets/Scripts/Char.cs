@@ -46,9 +46,15 @@ public class Char : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
     {
-		print (other.name);
-		switch(other.name){
+		/*switch(other.name){
 		
+		case "Collider_Geladeira":
+			capeta.text = "Open Fridge";
+			break;
+		case "Collider_Saida":
+			capeta.text = "Go to the Living Room";
+			break;
+
 		case "Collider_Pai":
 			capeta.text = "Talk to Dad";
 			break;
@@ -58,12 +64,15 @@ public class Char : MonoBehaviour {
 		case "Cen3_01_Controle":
 			capeta.text = "Take the remote control";
 			break;
-		}
+
+
+		}*/
     }
 
     void OnTriggerExit(Collider other)
     {
-        switch (other.name)
+		capeta.text = "";
+        /*switch (other.name)
         {
             case "Collider_Armario":
                 capeta.text = "";
@@ -77,7 +86,8 @@ public class Char : MonoBehaviour {
 			case "Cen3_01_Controle":
 				capeta.text = "";
 				break;
-        }
+        }*/
+	
     }
 
 	void blockWalk(){
