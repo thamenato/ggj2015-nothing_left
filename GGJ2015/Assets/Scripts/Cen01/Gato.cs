@@ -69,6 +69,7 @@ public class Gato : MonoBehaviour {
 	void gatoArranha(){
 		gameController.diminuiSatisfacao(satisfacao);
 		gameController.diminuiDisposicao(disposicao);
+		StartCoroutine(TrocaSprite());
 	}
 
 	IEnumerator TrocaSprite(){

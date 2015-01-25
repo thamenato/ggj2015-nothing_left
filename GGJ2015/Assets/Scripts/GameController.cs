@@ -8,9 +8,12 @@ public class GameController : MonoBehaviour {
 
 	public GameObject barraDisposicao;
 
+	public AudioClip[] bgMusic;
+
 	// Use this for initialization
 	void Start () {
-	
+		audio.clip = bgMusic[0];
+		audio.Play();
 	}
 	
 	// Update is called once per frame
@@ -20,6 +23,11 @@ public class GameController : MonoBehaviour {
 
 	void Awake(){
 		DontDestroyOnLoad(this);
+	}
+
+	public void changeBgMusic(int index){
+		audio.clip = bgMusic[index];
+		audio.Play();
 	}
 
 	public void diminuiSatisfacao(float val){
