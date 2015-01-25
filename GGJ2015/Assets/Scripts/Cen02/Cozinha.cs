@@ -6,6 +6,7 @@ public class Cozinha : MonoBehaviour {
 
 
 	public GameObject[] Geladeira;
+	public GameObject[] dialogsGeladeira;
 
 	public string Action_Text;
 	Text canvas_actionText;
@@ -38,8 +39,12 @@ public class Cozinha : MonoBehaviour {
 				canvas_actionText.text = "Open Fridge";
 				if(Input.GetKeyDown(KeyCode.Space)){
 					activated = true;
-					StartCoroutine(TrocaSprite());
-					}
+					var val = Random.Range(0, 10);
+					if(val <= 5)
+						StartCoroutine(noFood());
+					else
+						StartCoroutine(withFood());
+				}
 			}
 		if(gameObject.name=="Collider_Saida")
 			if (other.name == "Char"){
@@ -50,22 +55,70 @@ public class Cozinha : MonoBehaviour {
 
 	}
 
-	IEnumerator TrocaSprite(){
-		Geladeira[1].gameObject.renderer.enabled=true;
-		canvas_actionText.text="No food =(";
-		char_animator.SetBool("blocked", true);
 
+	IEnumerator noFood(){
+		Geladeira[1].gameObject.renderer.enabled=true;
+		// Dialogs
+		canvas_actionText.text="";
+
+		Instantiate(dialogsGeladeira[1]);
+		
+		char_animator.SetBool("blocked", true);
+		
 		//playSound
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(4);
+
+		Destroy(GameObject.FindGameObjectWithTag("dialog"));
+
+		var val = Random.Range(0, 10);
+		if(val <= 3){	// positivo
+			Instantiate(dialogsGeladeira[2]);
+
+			yield return new WaitForSeconds(6);
+			Destroy(GameObject.FindGameObjectWithTag("dialog"));
+
+			Instantiate(dialogsGeladeira[3]);
+		
+			yield return new WaitForSeconds(3);
+			Destroy(GameObject.FindGameObjectWithTag("dialog"));
+
+		}
+		else{	// negativo
+			Instantiate(dialogsGeladeira[4]);
+			yield return new WaitForSeconds(6);
+
+			Destroy(GameObject.FindGameObjectWithTag("dialog"));
+
+		}
+
 		Geladeira[1].gameObject.renderer.enabled=false;
 		canvas_actionText.text="";
 		char_animator.SetBool("blocked", false);
-		
+
+	}
+
+
+
+	IEnumerator withFood(){
+		Geladeira[2].gameObject.renderer.enabled=true;
+		// Dialogs
+		canvas_actionText.text = "";
+
+		Instantiate(dialogsGeladeira[0]);
+
+		char_animator.SetBool("blocked", true);
+
+		// playSound
+		yield return new WaitForSeconds(3);
+		Geladeira[2].gameObject.renderer.enabled=false;
+		canvas_actionText.text="";
+		char_animator.SetBool("blocked", false);
 	}
 	
 	void OnTriggerExit(Collider other){
 		if (other.name == "Char"){
 			canvas_actionText.text = "";
+			Destroy(GameObject.FindGameObjectWithTag("dialog"));
 		}
 	}
 }

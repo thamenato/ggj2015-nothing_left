@@ -8,11 +8,14 @@ public class Gato : MonoBehaviour {
 	public float satisfacao;
 	public float disposicao;
 	public string Action_Text;
+	public AudioClip[] gatoSom;
+
 	Text canvas_actionText;
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
 	GameController gameController;
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +48,6 @@ public class Gato : MonoBehaviour {
 				activated = true;
 				randomReaction();
 				char_animator.Play("CarinhoGato");
-
 			}
 		}
 		else
@@ -61,12 +63,16 @@ public class Gato : MonoBehaviour {
 	}
 
 	void gatoRonrona(){
+		audio.clip = gatoSom[0];
+		audio.Play();
 		gameController.aumentaSatisfacao(satisfacao);
 		gameController.diminuiDisposicao(disposicao);
 
 	}
 
 	void gatoArranha(){
+		audio.clip = gatoSom[1];
+		audio.Play();
 		gameController.diminuiSatisfacao(satisfacao);
 		gameController.diminuiDisposicao(disposicao);
 		StartCoroutine(TrocaSprite());

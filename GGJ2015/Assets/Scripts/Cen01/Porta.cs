@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Porta : MonoBehaviour {
 
 	public string Action_Text;
+	public AudioClip portaSom;
 	Text canvas_actionText;
 	//Transform char_transform;
 	
@@ -22,8 +23,11 @@ public class Porta : MonoBehaviour {
 		// if Scale x < 0 the Char is facing to the right
 		if (other.name == "Char"){
 			canvas_actionText.text = Action_Text;
-			if(Input.GetKeyDown(KeyCode.Space))
+			if(Input.GetKeyDown(KeyCode.Space)){
+				audio.clip = portaSom;
+				audio.Play();
 				Application.LoadLevel("Cen02_Cozinha");
+			}
 		}
 	}
 
