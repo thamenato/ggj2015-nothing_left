@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
+	public float disposicao;
+	public float satisfacao;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -14,7 +17,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Awake(){
-		DontDestroyOnLoad(audio);
+		DontDestroyOnLoad(this);
+		//DontDestroyOnLoad(audio);
 	}
+
+
 
 }
