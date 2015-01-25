@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 359b70d4e80a8634bb583b5a27b53a8a
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ost_home_day: {fileID: 8300000, guid: 7c5fc3bc790c5924999289a894513338, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
