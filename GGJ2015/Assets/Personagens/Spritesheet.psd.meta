@@ -122,8 +122,8 @@ TextureImporter:
         y: 196
         width: 259
         height: 58
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: 2}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Char_deitado2
       rect:
@@ -132,8 +132,8 @@ TextureImporter:
         y: 0
         width: 216
         height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 2
+      pivot: {x: .5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Char_deitado3
       rect:
@@ -142,8 +142,8 @@ TextureImporter:
         y: 0
         width: 113
         height: 185
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .514692724, y: .697438896}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Char_Pegar1
       rect:

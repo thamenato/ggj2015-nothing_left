@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Char : MonoBehaviour {
-	
+	public GameObject CameraFollow;
 	public float charSpeed=5f;
     public Text capeta;
 
@@ -17,6 +17,8 @@ public class Char : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		CameraFollow.transform.position = new Vector3(transform.position.x,CameraFollow.transform.position.y, CameraFollow.transform.position.z);
+
 		animator.SetBool("Walking", false );
 
 		if (!animator.GetBool("blocked")){
