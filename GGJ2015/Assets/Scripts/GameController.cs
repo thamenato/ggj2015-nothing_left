@@ -31,18 +31,22 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void diminuiSatisfacao(float val){
+		val = 1;
 		satisfacao -= val;
 	}
 
 	public void diminuiDisposicao(float val){
+		val = 0.1f;
 		disposicao -= val;
 	}
 
 	public void aumentaSatisfacao(float val){
+		val = 1;
 		satisfacao += val;
 	}
 	
 	public void aumentaDisposicao(float val){
+		val = 0.1f;
 		disposicao += val;
 	}
 

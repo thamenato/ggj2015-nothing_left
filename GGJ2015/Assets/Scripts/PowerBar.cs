@@ -31,7 +31,7 @@ public class PowerBar : MonoBehaviour {
 		if(gameController.getDisposicao() >= 0)
 			barra.transform.localScale = new Vector3(gameController.getDisposicao(), 1, 1);
 
-		gameController.diminuiDisposicao(Time.deltaTime * reducao);
+		//gameController.diminuiDisposicao(Time.deltaTime * reducao);
 
 	}
 }
