@@ -64,12 +64,11 @@ public class Sala : MonoBehaviour {
 					}
 				}
 				break;
-			case "Cen03_02a_Pai": //Saida da sala
+			case "Cen03_02a_Pai": //falar com o pai
 				if (other.name == "Char" && pegaControle == 0 && !blockSpace){
 					canvas_actionText.text = "Talk with Dad";
 					if(Input.GetKeyDown(KeyCode.Space)){
 						canvas_actionText.text = "";
-						pegaControle = 1;
 						blockSpace = true;
 						StartCoroutine(DadReaction1());
 						//gameObject.renderer.enabled=false;
@@ -80,7 +79,7 @@ public class Sala : MonoBehaviour {
 					if(Input.GetKeyDown(KeyCode.Space)){
 						pegaControle = 3;
 						canvas_actionText.text = "";
-
+						StartCoroutine(DadReaction2());
 						//gameObject.renderer.enabled=false;
 					}
 				}
@@ -106,6 +105,8 @@ public class Sala : MonoBehaviour {
 
 	IEnumerator DadReaction1(){ //pede controle
 
+		pegaControle = 1;
+
 		char_animator.SetBool("blocked", true);
 		Instantiate (dialogsPai[0]);
 
@@ -125,6 +126,25 @@ public class Sala : MonoBehaviour {
 
 	}
 
+	IEnumerator DadReaction2(){ //entrega controle
+		
+		char_animator.SetBool("blocked", true);
+
+		gameController.diminuiDisposicao(disposicao);
+		print("disposicao = " + gameController.getDisposicao());
+		gameController.aumentaSatisfacao(satisfacao);
+		print("satisfacao = " + gameController.getSatisfacao());
+
+		Instantiate (dialogsPai[2]);
+		
+		yield return new WaitForSeconds(3); 
+		
+		Destroy(GameObject.FindGameObjectWithTag("dialog"));
+		
+		char_animator.SetBool("blocked", false);
+		
+	}
+
 	IEnumerator DadReaction3(){ //jogador ignora o pedido
 		
 		char_animator.SetBool("blocked", true);
@@ -137,6 +157,8 @@ public class Sala : MonoBehaviour {
 		var val = Random.Range(0, 10);
 
 		if(val > 4){ //negativo
+			gameController.diminuiSatisfacao(satisfacao);
+			print("satisfacao = " + gameController.getSatisfacao());
 			Instantiate (dialogsPai[4]);
 
 			yield return new WaitForSeconds(3); 
@@ -145,6 +167,8 @@ public class Sala : MonoBehaviour {
 		}
 
 		else { //positivo
+			gameController.aumentaSatisfacao(satisfacao);
+			print("satisfacao = " + gameController.getSatisfacao());
 			Instantiate (dialogsPai[5]);
 			
 			yield return new WaitForSeconds(3); 

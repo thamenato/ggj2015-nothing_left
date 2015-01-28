@@ -7,15 +7,26 @@ public class Cozinha : MonoBehaviour {
 
 	public GameObject[] Geladeira;
 	public GameObject[] dialogsGeladeira;
+	public float disposicao;
+	public float satisfacao;
 
 	public string Action_Text;
 	Text canvas_actionText;
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
+	GameController gameController;
 
 	// Use this for initialization
 	void Start () {
+
+		var findGC = GameObject.Find("GameController");
+		
+		if(findGC == null)
+			print ("game controller not found");
+		else
+			gameController = findGC.GetComponent<GameController>();
+
 		// Seeks for 'actionText' inside Canvas and returns it to local variable actionText
 		var find_actionText = GameObject.Find("actionText");
 		if (find_actionText == null)
@@ -62,7 +73,12 @@ public class Cozinha : MonoBehaviour {
 		canvas_actionText.text="";
 
 		Instantiate(dialogsGeladeira[1]);
-		
+		gameController.diminuiDisposicao(disposicao);
+		print("disposicao = " + gameController.getDisposicao());
+
+		gameController.diminuiSatisfacao(satisfacao);
+		print("satisfacao = " + gameController.getSatisfacao());
+
 		char_animator.SetBool("blocked", true);
 		
 		//playSound
@@ -73,6 +89,11 @@ public class Cozinha : MonoBehaviour {
 		var val = Random.Range(0, 10);
 		if(val <= 3){	// positivo
 			Instantiate(dialogsGeladeira[2]);
+			gameController.aumentaDisposicao(disposicao);
+			print("disposicao = " + gameController.getDisposicao());
+
+			gameController.aumentaSatisfacao(satisfacao);
+			print("satisfacao = " + gameController.getSatisfacao());
 
 			yield return new WaitForSeconds(6);
 			Destroy(GameObject.FindGameObjectWithTag("dialog"));
@@ -85,6 +106,9 @@ public class Cozinha : MonoBehaviour {
 		}
 		else{	// negativo
 			Instantiate(dialogsGeladeira[4]);
+			gameController.diminuiSatisfacao(satisfacao);
+			print("satisfacao = " + gameController.getSatisfacao());
+
 			yield return new WaitForSeconds(6);
 
 			Destroy(GameObject.FindGameObjectWithTag("dialog"));
@@ -105,6 +129,11 @@ public class Cozinha : MonoBehaviour {
 		canvas_actionText.text = "";
 
 		Instantiate(dialogsGeladeira[0]);
+		gameController.aumentaDisposicao(disposicao);
+		print("disposicao = " + gameController.getDisposicao());
+
+		gameController.aumentaSatisfacao(satisfacao);
+		print("satisfacao = " + gameController.getSatisfacao());
 
 		char_animator.SetBool("blocked", true);
 

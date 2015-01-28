@@ -66,7 +66,10 @@ public class Gato : MonoBehaviour {
 		audio.clip = gatoSom[0];
 		audio.Play();
 		gameController.aumentaSatisfacao(satisfacao);
+		print("satisfacao = " + gameController.getSatisfacao());
+
 		gameController.diminuiDisposicao(disposicao);
+		print("disposicao = " + gameController.getDisposicao());
 
 	}
 
@@ -74,7 +77,11 @@ public class Gato : MonoBehaviour {
 		audio.clip = gatoSom[1];
 		audio.Play();
 		gameController.diminuiSatisfacao(satisfacao);
+		print("satisfacao = " + gameController.getSatisfacao());
+
 		gameController.diminuiDisposicao(disposicao);
+		print("disposicao = " + gameController.getDisposicao());
+
 		StartCoroutine(TrocaSprite());
 	}
 
