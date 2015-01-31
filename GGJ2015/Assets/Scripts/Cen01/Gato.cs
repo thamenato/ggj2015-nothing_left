@@ -7,10 +7,12 @@ public class Gato : MonoBehaviour {
 	public Sprite[] gatoSprite;
 	public float satisfacao;
 	public float disposicao;
-	public string Action_Text;
-	public AudioClip[] gatoSom;
+	public string text;
+    public GameObject actionTextObject;
+    public AudioClip[] gatoSom;
+    public GameObject player;
 
-	Text canvas_actionText;
+    Text canvas_actionText;
     Text canvas_actionText_shadow;
 
 	Transform char_transform;
@@ -18,29 +20,18 @@ public class Gato : MonoBehaviour {
 	bool activated = false;
 	GameController gameController;
 
+    Text[] actionText;
 
 	// Use this for initialization
 	void Start () {
-		// Seeks for 'actionText' inside Canvas and returns it to local variable actionText
-		var find_actionText = GameObject.Find("actionText");
-        var find_actionText_shadow = GameObject.Find("actionText_shadow");
-        if (find_actionText == null)
-			print ("actionText not found");
-		else
-			canvas_actionText = find_actionText.GetComponent<Text>();
 
-        if (find_actionText_shadow == null)
-            print("actionText_shadow not found");
-        else
-            canvas_actionText_shadow = find_actionText_shadow.GetComponent<Text>();
+        actionText = actionTextObject.GetComponentsInChildren<Text>();
+        canvas_actionText = actionText[0];
+        canvas_actionText_shadow = actionText[1];
 
-		var find_Char = GameObject.Find ("Char");
-		if (find_Char == null)
-			print ("Char not found");
-		else {
-			char_transform = find_Char.GetComponent<Transform>();
-			char_animator = find_Char.GetComponent<Animator>();
-		}
+        char_transform = player.GetComponent<Transform>();
+        char_animator = player.GetComponent<Animator>();
+
 		var find_gameController = GameObject.Find ("GameController");
 		if (find_gameController == null)
 			print ("GameController not found");
@@ -51,8 +42,8 @@ public class Gato : MonoBehaviour {
 	void OnTriggerStay(Collider other){
 		// if Scale x < 0 the Char is facing to the right and Gato never used before
 		if (other.name == "Char" && char_transform.localScale.x < 0 && activated == false){
-			canvas_actionText_shadow.text = canvas_actionText.text = Action_Text;
-			if(Input.GetKeyDown(KeyCode.Space)){
+			canvas_actionText_shadow.text = canvas_actionText.text = text;
+			if(Input.GetKey(KeyCode.Space)){
 				activated = true;
 				randomReaction();
 				char_animator.Play("CarinhoGato");
