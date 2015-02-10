@@ -5,6 +5,7 @@ public class Camera : MonoBehaviour {
 
     public float leftMargin;
     public float rightMargin;
+    public float smooth = 1.25f;
 
     private Vector3 endMarker;
     
@@ -17,7 +18,7 @@ public class Camera : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.SmoothDamp(transform.position, endMarker, ref velocity, 1.25f);
+        transform.position = Vector3.SmoothDamp(transform.position, endMarker, ref velocity, smooth);
     }
 
     void OnTriggerEnter(Collider other)

@@ -13,7 +13,7 @@ public class Porta : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
     
-}
+    }
 	
 	void OnTriggerStay(Collider other){
 		// if Scale x < 0 the Char is facing to the right
