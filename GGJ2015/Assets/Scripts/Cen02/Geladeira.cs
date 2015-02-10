@@ -10,11 +10,9 @@ public class Geladeira : MonoBehaviour {
     public float disposicao;
     public float satisfacao;
     public string text;
-    public GameObject actionTextObject;
-
-    Text[] actionText;
-    Text canvas_actionText;
-    Text canvas_actionText_shadow;
+    
+    public Text actionText;
+    public Text actionText_shadow;
 
     Animator char_animator;
     bool activated = false;
@@ -22,10 +20,6 @@ public class Geladeira : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        actionText = actionTextObject.GetComponentsInChildren<Text>();
-        canvas_actionText = actionText[0];
-        canvas_actionText_shadow = actionText[1];
-
         //char_transform = player.GetComponent<Transform>();
         char_animator = player.GetComponent<Animator>();
 
@@ -41,7 +35,7 @@ public class Geladeira : MonoBehaviour {
         // if Scale x < 0 the Char is facing to the right and Gato never used before
         if (other.name == "Char" && activated == false)
         {
-            canvas_actionText_shadow.text = canvas_actionText.text = text;
+            actionText_shadow.text = actionText.text = text;
             if (Input.GetKey(KeyCode.Space))
             {
                 activated = true;
@@ -54,7 +48,7 @@ public class Geladeira : MonoBehaviour {
         }
         else
         {
-            canvas_actionText_shadow.text = canvas_actionText.text = "";
+            actionText_shadow.text = actionText.text = "";
         }
     }
 
@@ -62,7 +56,7 @@ public class Geladeira : MonoBehaviour {
     {
         geladeira[1].gameObject.renderer.enabled = true;
         // Dialogs
-        canvas_actionText.text = "";
+        actionText.text = "";
 
         Instantiate(dialogsGeladeira[1]);
         gameController.diminuiDisposicao(disposicao);
@@ -110,7 +104,7 @@ public class Geladeira : MonoBehaviour {
         }
 
         geladeira[1].gameObject.renderer.enabled = false;
-        canvas_actionText.text = "";
+        actionText.text = "";
         char_animator.SetBool("blocked", false);
 
     }
@@ -121,7 +115,7 @@ public class Geladeira : MonoBehaviour {
     {
         geladeira[2].gameObject.renderer.enabled = true;
         // Dialogs
-        canvas_actionText.text = "";
+        actionText.text = "";
 
         Instantiate(dialogsGeladeira[0]);
         gameController.aumentaDisposicao(disposicao);
@@ -135,7 +129,7 @@ public class Geladeira : MonoBehaviour {
         // playSound
         yield return new WaitForSeconds(3);
         geladeira[2].gameObject.renderer.enabled = false;
-        canvas_actionText.text = "";
+        actionText.text = "";
         char_animator.SetBool("blocked", false);
     }
 
@@ -143,7 +137,7 @@ public class Geladeira : MonoBehaviour {
     {
         if (other.name == "Char")
         {
-            canvas_actionText_shadow.text = canvas_actionText.text = "";
+            actionText_shadow.text = actionText.text = "";
             Destroy(GameObject.FindGameObjectWithTag("dialog"));
         }
     }

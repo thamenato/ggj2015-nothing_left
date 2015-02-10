@@ -5,22 +5,17 @@ using UnityEngine.UI;
 public class Cozinha : MonoBehaviour {
 
     public string text;
-    public GameObject actionTextObject;
-
-    Text[] actionText;
-    Text canvas_actionText;
-    Text canvas_actionText_shadow;
+    
+    public Text actionText;
+    public Text actionText_shadow;
 
 	// Use this for initialization
 	void Start () {
-        actionText = actionTextObject.GetComponentsInChildren<Text>();
-        canvas_actionText = actionText[0];
-        canvas_actionText_shadow = actionText[1];
-	}
+    }
 	
 	void OnTriggerStay(Collider other){
         if (other.name == "Char"){
-            canvas_actionText_shadow.text = canvas_actionText.text = text;
+            actionText_shadow.text = actionText.text = text;
             if(Input.GetKeyDown(KeyCode.Space))
                 Application.LoadLevel("Cen03_Sala");
 		}
@@ -30,7 +25,7 @@ public class Cozinha : MonoBehaviour {
     {
         if (other.name == "Char")
         {
-            canvas_actionText_shadow.text = canvas_actionText.text = "";
+            actionText_shadow.text = actionText.text = "";
         }
     }
 

@@ -8,26 +8,19 @@ public class Gato : MonoBehaviour {
 	public float satisfacao;
 	public float disposicao;
 	public string text;
-    public GameObject actionTextObject;
     public AudioClip[] gatoSom;
     public GameObject player;
 
-    Text canvas_actionText;
-    Text canvas_actionText_shadow;
+    public Text actionText;
+    public Text actionText_shadow;
 
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
 	GameController gameController;
 
-    Text[] actionText;
-
 	// Use this for initialization
 	void Start () {
-
-        actionText = actionTextObject.GetComponentsInChildren<Text>();
-        canvas_actionText = actionText[0];
-        canvas_actionText_shadow = actionText[1];
 
         char_transform = player.GetComponent<Transform>();
         char_animator = player.GetComponent<Animator>();
@@ -40,9 +33,9 @@ public class Gato : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other){
-		// if Scale x < 0 the Char is facing to the right and Gato never used before
+        // if Scale x < 0 the Char is facing to the right and Gato never used before
 		if (other.name == "Char" && char_transform.localScale.x < 0 && activated == false){
-			canvas_actionText_shadow.text = canvas_actionText.text = text;
+            actionText_shadow.text = actionText.text = text;
 			if(Input.GetKey(KeyCode.Space)){
 				activated = true;
 				randomReaction();
@@ -50,7 +43,7 @@ public class Gato : MonoBehaviour {
 			}
 		}
         else {
-            canvas_actionText_shadow.text = canvas_actionText.text = "";
+            actionText_shadow.text = actionText.text = "";
         }
     }
 
@@ -95,7 +88,7 @@ public class Gato : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		if (other.name == "Char"){
-			canvas_actionText_shadow.text = canvas_actionText.text = "";
+			actionText_shadow.text = actionText.text = "";
 		}
 	}
 }

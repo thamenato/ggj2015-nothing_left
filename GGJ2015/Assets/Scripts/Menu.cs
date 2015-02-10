@@ -4,24 +4,23 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour {
 	
-	GameObject mainMenu;
-	GameObject creditsMenu;
+	public GameObject mainMenu;
+	public GameObject creditsMenu;
 
+    public Button start;
+    public Button credits;
+    public Button back;
+    public Button soundtrack;
 
 	public void Start(){
-		var start = GameObject.Find ("start_btn").GetComponent<Button>();
-		var credits = GameObject.Find ("credits_btn").GetComponent<Button>();
-		var back = GameObject.Find ("back_btn").GetComponent<Button>();
 
 		start.onClick.AddListener(startGame);
 		credits.onClick.AddListener(showCredits);
 		back.onClick.AddListener(backMainMenu);
-
-		mainMenu = GameObject.Find ("mainMenu");
-		creditsMenu = GameObject.Find("creditsMenu");
-
+        soundtrack.onClick.AddListener(soundtrackButton);
 		creditsMenu.SetActive(false);
-	}
+	
+    }
 	
 	public void startGame(){
 		Application.LoadLevel("Cen01_Quarto");
@@ -35,5 +34,10 @@ public class Menu : MonoBehaviour {
 		creditsMenu.SetActive(false);
 		mainMenu.SetActive(true);
 	}
+
+    public void soundtrackButton()
+    {
+        Application.ExternalEval("window.open('http://freemusicarchive.org/music/Kai_Engel/','_blank')");
+    }
 
 }

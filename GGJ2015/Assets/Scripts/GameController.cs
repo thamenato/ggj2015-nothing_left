@@ -10,6 +10,10 @@ public class GameController : MonoBehaviour {
 
 	public AudioClip[] bgMusic;
 
+    public static int maxDays;
+    public static bool startDay = true;
+    public static int day = 0;
+
 	// Use this for initialization
 	void Start () {
 		audio.clip = bgMusic[0];
