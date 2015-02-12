@@ -4,31 +4,34 @@ using UnityEngine.UI;
 
 public class Porta : MonoBehaviour {
 
-	public string text;
+	public string text; // text for action text
     public AudioClip portaSom;
 
+    // canvas Text
     public Text actionText;
     public Text actionText_shadow;
-	
-	// Use this for initialization
-	void Start () {
-    
-    }
-	
-	void OnTriggerStay(Collider other){
-		// if Scale x < 0 the Char is facing to the right
-		if (other.name == "Char"){
-			actionText_shadow.text = actionText.text = text;
-			if(Input.GetKeyDown(KeyCode.Space)){
+
+    public string nextScene;
+
+	void OnTriggerStay(Collider other)
+    {
+		if (other.tag == "Player")
+        {  
+			// if player stands on collider, shows the text for this action
+            actionText_shadow.text = actionText.text = text;
+			
+            // if player press space - do action
+            if(Input.GetKeyDown(KeyCode.Space)){
 				audio.clip = portaSom;
 				audio.Play();
-				Application.LoadLevel("Cen02_Cozinha");
+				Application.LoadLevel(nextScene);
 			}
 		}
 	}
 
 	void OnTriggerExit(Collider other){
-		if (other.name == "Char"){
+		if (other.tag == "Player"){
+            // player not standing on collider anymore
             actionText_shadow.text = actionText.text = "";
 		}
 	}

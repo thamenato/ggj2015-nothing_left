@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 8feabd403599eaa4e9c96259370be451
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - portaSom: {instanceID: 0}
+  - actionText: {fileID: 11416442, guid: 3c73814375e9ac04cae09b99af586125, type: 2}
+  - actionText_shadow: {fileID: 11416440, guid: 3c73814375e9ac04cae09b99af586125,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

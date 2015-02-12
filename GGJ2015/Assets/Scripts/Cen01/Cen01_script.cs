@@ -15,7 +15,6 @@ public class Cen01_script : MonoBehaviour {
 			print ("GameController not found");
 		else{
 			gameController = find_gameController.GetComponent<GameController>();
-            gameController.showBarraDisposicao();
             gameController.changeBgMusic(1);
 		}
 
@@ -27,6 +26,7 @@ public class Cen01_script : MonoBehaviour {
             animator.SetBool("blocked", true);
             animator.Play("Deitado");
             GameController.day++;
+            GameController.started = true;
         }
 
 		
