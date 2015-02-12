@@ -3,17 +3,21 @@ using System.Collections;
 
 public class DadIgnore : MonoBehaviour {
     
+    // Satisfaction and disposition for this event
     public float satisfacao;
     public float disposicao;
 
+    // Dialogs
     public GameObject[] dialogsPai;
 
-    public Animator char_animator;
+    // Player animator
+    public Animator playerAnimator;
     
     GameController gameController;
 
     void Start()
     {
+        // finds the GameController
         var find_gameController = GameObject.Find("GameController");
         if (find_gameController == null)
             print("GameController not found");
@@ -23,14 +27,14 @@ public class DadIgnore : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Char" && Remote.takeRemote == 1)
+        if (other.tag == "Player" && Remote.takeRemote == 1)
             StartCoroutine(DadReaction3());
     }
 
     IEnumerator DadReaction3()
-    { //jogador ignora o pedido
-
-        char_animator.SetBool("blocked", true);
+    {   
+        // Player ignores Dad
+        playerAnimator.SetBool("blocked", true);
         Instantiate(dialogsPai[0]);
 
         yield return new WaitForSeconds(3);
@@ -40,7 +44,7 @@ public class DadIgnore : MonoBehaviour {
         var val = Random.Range(0, 10);
 
         if (val > 4)
-        { //negativo
+        {   //negative
             if (gameController != null) { 
                 gameController.diminuiSatisfacao(satisfacao);
                 print("satisfacao = " + gameController.getSatisfacao());
@@ -53,7 +57,7 @@ public class DadIgnore : MonoBehaviour {
         }
 
         else
-        { //positivo
+        {   //positive
             if (gameController != null){
                 gameController.aumentaSatisfacao(satisfacao);
                 print("satisfacao = " + gameController.getSatisfacao());
@@ -65,8 +69,7 @@ public class DadIgnore : MonoBehaviour {
             Destroy(GameObject.FindGameObjectWithTag("dialog"));
         }
 
-        char_animator.SetBool("blocked", false);
+        playerAnimator.SetBool("blocked", false);
         Remote.takeRemote = 3;
-
     }
 }

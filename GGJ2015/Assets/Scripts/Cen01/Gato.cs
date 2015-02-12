@@ -4,13 +4,21 @@ using UnityEngine.UI;
 
 public class Gato : MonoBehaviour {
 
+    // Satisfaction and disposition for this event
+    public float satisfacao;
+    public float disposicao;
+
+    // Text for action text of this event
+    public string text;
+    
+    // sprites to change during animation
 	public Sprite[] gatoSprite;
-	public float satisfacao;
-	public float disposicao;
-	public string text;
-    public AudioClip[] gatoSom;
+	public AudioClip[] gatoSom;
+
+    // player
     public GameObject player;
 
+    // Action Text
     public Text actionText;
     public Text actionText_shadow;
 
@@ -21,10 +29,11 @@ public class Gato : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        // get transform and animator from Player
         char_transform = player.GetComponent<Transform>();
         char_animator = player.GetComponent<Animator>();
 
+        // finds the GameController
 		var find_gameController = GameObject.Find ("GameController");
 		if (find_gameController == null)
 			print ("GameController not found");
@@ -34,20 +43,25 @@ public class Gato : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
         // if Scale x < 0 the Char is facing to the right and Gato never used before
-		if (other.name == "Char" && char_transform.localScale.x < 0 && activated == false){
+		if (other.tag == "Player" && char_transform.localScale.x < 0 && activated == false)
+        {    
             actionText_shadow.text = actionText.text = text;
-			if(Input.GetKey(KeyCode.Space)){
-				activated = true;
+			
+            // if player interacts with the cat
+            if(Input.GetKey(KeyCode.Space))
+            {
+				activated = true;   // cant interact anymore
 				randomReaction();
 				char_animator.Play("CarinhoGato");
 			}
 		}
-        else {
+        else
             actionText_shadow.text = actionText.text = "";
-        }
     }
 
-	void randomReaction(){
+
+	void randomReaction()
+    {
 		var val = Random.Range(0, 10);
 		if(val <= 5)
 			gatoRonrona();
@@ -55,40 +69,50 @@ public class Gato : MonoBehaviour {
 			gatoArranha();
 	}
 
-	void gatoRonrona(){
+	void gatoRonrona()
+    {
 		audio.clip = gatoSom[0];
 		audio.Play();
-		gameController.aumentaSatisfacao(satisfacao);
-		print("satisfacao = " + gameController.getSatisfacao());
+	    
+        if(gameController != null)
+        {
+            gameController.aumentaSatisfacao(satisfacao);
+            print("satisfacao = " + gameController.getSatisfacao());
 
-		gameController.diminuiDisposicao(disposicao);
-		print("disposicao = " + gameController.getDisposicao());
+            gameController.diminuiDisposicao(disposicao);
+            print("disposicao = " + gameController.getDisposicao());
+        }
+    }
 
-	}
-
-	void gatoArranha(){
+	void gatoArranha()
+    {
 		audio.clip = gatoSom[1];
 		audio.Play();
-		gameController.diminuiSatisfacao(satisfacao);
-		print("satisfacao = " + gameController.getSatisfacao());
 
-		gameController.diminuiDisposicao(disposicao);
-		print("disposicao = " + gameController.getDisposicao());
+        if (gameController != null)
+        {
+            gameController.diminuiSatisfacao(satisfacao);
+            print("satisfacao = " + gameController.getSatisfacao());
 
+            gameController.diminuiDisposicao(disposicao);
+            print("disposicao = " + gameController.getDisposicao());
+
+        }
+        
 		StartCoroutine(TrocaSprite());
 	}
 
-	IEnumerator TrocaSprite(){
+	IEnumerator TrocaSprite()
+    {
 		gameObject.GetComponent<SpriteRenderer>().sprite = gatoSprite[0];
-		//playSound
 		yield return new WaitForSeconds(1.5f);
 		gameObject.GetComponent<SpriteRenderer>().sprite = gatoSprite[1];
 
 	}
 
-	void OnTriggerExit(Collider other){
-		if (other.name == "Char"){
+	void OnTriggerExit(Collider other)
+    {
+		if (other.tag == "Player")
 			actionText_shadow.text = actionText.text = "";
-		}
 	}
 }

@@ -4,13 +4,21 @@ using UnityEngine.UI;
 
 public class Geladeira : MonoBehaviour {
 
-    public GameObject player;
-    public GameObject[] geladeira;
-    public GameObject[] dialogsGeladeira;
-    public float disposicao;
+    // Satisfaction and disposition for this event
     public float satisfacao;
+    public float disposicao;
+
+    // Text for action text of this event
     public string text;
     
+    // Player
+    public GameObject player;
+    
+    // Fridge sprites and dialogs
+    public GameObject[] geladeira;
+    public GameObject[] dialogsGeladeira;
+    
+    // Action Text
     public Text actionText;
     public Text actionText_shadow;
 
@@ -20,9 +28,10 @@ public class Geladeira : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        //char_transform = player.GetComponent<Transform>();
+        // get animator from Player
         char_animator = player.GetComponent<Animator>();
 
+        // finds the GameController
         var find_gameController = GameObject.Find("GameController");
         if (find_gameController == null)
             print("GameController not found");
@@ -32,13 +41,17 @@ public class Geladeira : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        // if Scale x < 0 the Char is facing to the right and Gato never used before
-        if (other.name == "Char" && activated == false)
+        if (other.tag == "Player" && activated == false)
         {
+            
             actionText_shadow.text = actionText.text = text;
+            
+            // if the player interacts with the fridge
             if (Input.GetKey(KeyCode.Space))
             {
-                activated = true;
+                activated = true; // cant interact anymore
+
+                // Random reaction 
                 var val = Random.Range(0, 10);
                 if (val <= 5)
                     StartCoroutine(noFood());
@@ -47,24 +60,28 @@ public class Geladeira : MonoBehaviour {
             }
         }
         else
-        {
             actionText_shadow.text = actionText.text = "";
-        }
     }
 
     IEnumerator noFood()
     {
+        // show sprite of fridge without food
         geladeira[1].gameObject.renderer.enabled = true;
-        // Dialogs
+        
         actionText.text = "";
-
+        
+        // Dialogs
         Instantiate(dialogsGeladeira[1]);
-        gameController.diminuiDisposicao(disposicao);
-        print("disposicao = " + gameController.getDisposicao());
+        
+        if(gameController != null)
+        {
+            gameController.diminuiDisposicao(disposicao);
+            print("disposicao = " + gameController.getDisposicao());
 
-        gameController.diminuiSatisfacao(satisfacao);
-        print("satisfacao = " + gameController.getSatisfacao());
-
+            gameController.diminuiSatisfacao(satisfacao);
+            print("satisfacao = " + gameController.getSatisfacao());
+        }
+        
         char_animator.SetBool("blocked", true);
 
         //playSound
@@ -76,12 +93,16 @@ public class Geladeira : MonoBehaviour {
         if (val <= 3)
         {	// positivo
             Instantiate(dialogsGeladeira[2]);
-            gameController.aumentaDisposicao(disposicao);
-            print("disposicao = " + gameController.getDisposicao());
 
-            gameController.aumentaSatisfacao(satisfacao);
-            print("satisfacao = " + gameController.getSatisfacao());
+            if (gameController != null)
+            {
+                gameController.aumentaDisposicao(disposicao);
+                print("disposicao = " + gameController.getDisposicao());
 
+                gameController.aumentaSatisfacao(satisfacao);
+                print("satisfacao = " + gameController.getSatisfacao());
+            }
+            
             yield return new WaitForSeconds(6);
             Destroy(GameObject.FindGameObjectWithTag("dialog"));
 
@@ -94,19 +115,21 @@ public class Geladeira : MonoBehaviour {
         else
         {	// negativo
             Instantiate(dialogsGeladeira[4]);
-            gameController.diminuiSatisfacao(satisfacao);
-            print("satisfacao = " + gameController.getSatisfacao());
+
+            if(gameController != null)
+            {
+                gameController.diminuiSatisfacao(satisfacao);
+                print("satisfacao = " + gameController.getSatisfacao());
+            }
 
             yield return new WaitForSeconds(6);
 
             Destroy(GameObject.FindGameObjectWithTag("dialog"));
-
         }
 
         geladeira[1].gameObject.renderer.enabled = false;
         actionText.text = "";
         char_animator.SetBool("blocked", false);
-
     }
 
 
@@ -114,20 +137,28 @@ public class Geladeira : MonoBehaviour {
     IEnumerator withFood()
     {
         geladeira[2].gameObject.renderer.enabled = true;
-        // Dialogs
+        
         actionText.text = "";
-
+        
+        // Dialogs
         Instantiate(dialogsGeladeira[0]);
-        gameController.aumentaDisposicao(disposicao);
-        print("disposicao = " + gameController.getDisposicao());
+        
+        if(gameController != null)
+        {
 
-        gameController.aumentaSatisfacao(satisfacao);
-        print("satisfacao = " + gameController.getSatisfacao());
+            gameController.aumentaDisposicao(disposicao);
+            print("disposicao = " + gameController.getDisposicao());
+
+            gameController.aumentaSatisfacao(satisfacao);
+            print("satisfacao = " + gameController.getSatisfacao());
+        }
 
         char_animator.SetBool("blocked", true);
 
         // playSound
+        
         yield return new WaitForSeconds(3);
+        
         geladeira[2].gameObject.renderer.enabled = false;
         actionText.text = "";
         char_animator.SetBool("blocked", false);
@@ -135,7 +166,7 @@ public class Geladeira : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "Char")
+        if (other.tag == "Player")
         {
             actionText_shadow.text = actionText.text = "";
             Destroy(GameObject.FindGameObjectWithTag("dialog"));

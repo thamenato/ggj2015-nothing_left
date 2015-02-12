@@ -4,24 +4,27 @@ using UnityEngine.UI;
 
 public class Remote : MonoBehaviour {
 
+    // Text for action text of this event
     public string text;
 
+    // Action Text
     public Text actionText;
     public Text actionText_shadow;
-
-    static public int takeRemote = 0;
-    /*
+    
+    /* Take Remote
      * 0 - remote on the table
      * 1 - can be picked
      * 2 - picked
      * 3 - ignored
     */
-
+    static public int takeRemote = 0;
+    
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "Char" && takeRemote == 1)
+        if (other.tag == "Player" && takeRemote == 1)
         {
             actionText_shadow.text = actionText.text = text;
+            
             if (Input.GetKey(KeyCode.Space))
             {
                 takeRemote = 2;
@@ -34,9 +37,7 @@ public class Remote : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "Char")
-        {
+        if (other.tag == "Player")
             actionText_shadow.text = actionText.text = "";
-        }
     }
 }

@@ -3,19 +3,9 @@ using System.Collections;
 
 public class Blender : MonoBehaviour {
     
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     void OnTriggerStay(Collider other)
     {
-        if (other.name == "Char")
+        if (other.tag == "Player")
         {
             if (Input.GetKey(KeyCode.Space))
             {
