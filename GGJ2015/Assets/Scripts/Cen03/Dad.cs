@@ -9,7 +9,7 @@ public class Dad : MonoBehaviour {
     public float disposicao;
 
     // Text for action text of this event
-    public string[] text;
+    string[] text = new string[2];
 
     // Action Text
     public Text actionText;
@@ -25,6 +25,10 @@ public class Dad : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
+        text[0] = Events.eventsTextAction[name];
+        text[1] = Events.eventsTextAction[name + "_remote"];
+
         // finds the GameController
         var find_gameController = GameObject.Find("GameController");
         if (find_gameController == null)
@@ -52,7 +56,8 @@ public class Dad : MonoBehaviour {
         Destroy(GameObject.FindGameObjectWithTag("dialog"));
 
         playerAnimator.SetBool("blocked", false);
-        actionText_shadow.text = actionText.text = "TAKE IT                    IGNORE";
+
+        actionText_shadow.text = actionText.text = Events.eventsTextAction[name + "_decision"];
     }
 
     IEnumerator DadReaction2()

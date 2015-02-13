@@ -9,7 +9,7 @@ public class Geladeira : MonoBehaviour {
     public float disposicao;
 
     // Text for action text of this event
-    public string text;
+    string text;
     
     // Player
     public GameObject player;
@@ -28,6 +28,7 @@ public class Geladeira : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        text = Events.eventsTextAction[name];
         // get animator from Player
         char_animator = player.GetComponent<Animator>();
 

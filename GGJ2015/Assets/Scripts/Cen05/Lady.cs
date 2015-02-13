@@ -8,7 +8,7 @@ public class Lady : MonoBehaviour {
     public float satisfacao;
     public float disposicao;
 
-    public string text;
+    string text;
 
     // Action Text
     public Text actionText;
@@ -27,6 +27,7 @@ public class Lady : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        text = Events.eventsTextAction[name];
         // finds the GameController
         var find_gameController = GameObject.Find("GameController");
         if (find_gameController == null)
