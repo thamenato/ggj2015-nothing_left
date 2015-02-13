@@ -849,3 +849,9 @@ section #title .credits.right {
     display: none;
   }
 }
+.job {
+  font-size: 15px;
+  color: #b6b6b6;
+  text-align: center;
+  font-style: italic;
+}
