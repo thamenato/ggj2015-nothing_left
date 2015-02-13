@@ -133,9 +133,25 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Try the latest build of the game!</h3>
+<h3><a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Try the latest build of the game - Build #3 (13.02.2015)</h3>
 
-<p>Build #3 (13.02.2015) - Lots of changes on scripts! Changed everything to prefabs so each event can be worked individually with it's own script and can be instantiated at any time we want.</br>Implemented an XML parser to set each event's action text so now we can add any other languages and new texts to our game easily.</br>From that, Dialogs will be the next big step and hopefully as soon as they're done the game mechanics will be the next focus so it can actually be played and make more sense.
+<p>The game looks quite different now :) The changes for this build will be listed below:
+  <ul>
+    <li>
+      Scripts: changed everything to prefabs so each event can be worked individually with it's own script and can be instantiated at any time we want.
+    </li>
+    <li>
+      Camera: with the old script, the camera would be attached to the player so anytime the player moved the camera would change it's position.</br>
+      Now the Camera has a left and right margins so it won't show the "outside" of the scene, also the player's Transform is attached to the camera so anytime the player's position is at the "middle" of the scene, the camera will move to the right or the left accordingly to where the player is looking.
+    </li>
+    <li>
+      Canvas: now everything is inside the Canvas object and they can be resized and positioned properly, that includes - the "disposition" bar and action's text. (Dialogues still to be done)
+    </li>
+    <li>
+      Implemented an XML parser to set each event's action text so now we can add any other languages and new texts to our game easily.
+    </li>
+  </ul>
+  From that, dialogues will be the next big step and hopefully as soon as they're done the game mechanics will be the next focus so it can actually be played and make more sense.
 </p>
 
 <!-- build vai aqui -->
