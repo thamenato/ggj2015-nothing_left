@@ -4,14 +4,20 @@ using UnityEngine.UI;
 
 public class Porta : MonoBehaviour {
 
-	public string text; // text for action text
-    public AudioClip portaSom;
+	public AudioClip portaSom;
 
     // canvas Text
     public Text actionText;
     public Text actionText_shadow;
 
     public string nextScene;
+    
+    string text; // text for action text
+    
+    void Start()
+    {
+        text = Events.eventsTextAction[name];
+    }
 
 	void OnTriggerStay(Collider other)
     {

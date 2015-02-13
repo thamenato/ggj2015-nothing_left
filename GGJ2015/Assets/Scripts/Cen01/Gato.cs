@@ -8,9 +8,6 @@ public class Gato : MonoBehaviour {
     public float satisfacao;
     public float disposicao;
 
-    // Text for action text of this event
-    public string text;
-    
     // sprites to change during animation
 	public Sprite[] gatoSprite;
 	public AudioClip[] gatoSom;
@@ -21,7 +18,10 @@ public class Gato : MonoBehaviour {
     // Action Text
     public Text actionText;
     public Text actionText_shadow;
-
+    
+    // Text for action text of this event
+    string text;
+    
 	Transform char_transform;
 	Animator char_animator;
 	bool activated = false;
@@ -29,6 +29,8 @@ public class Gato : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        text = Events.eventsTextAction[name];
+    
         // get transform and animator from Player
         char_transform = player.GetComponent<Transform>();
         char_animator = player.GetComponent<Animator>();

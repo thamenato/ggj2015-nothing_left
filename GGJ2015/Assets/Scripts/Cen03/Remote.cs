@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Remote : MonoBehaviour {
 
     // Text for action text of this event
-    public string text;
+    string text;
 
     // Action Text
     public Text actionText;
@@ -18,7 +18,12 @@ public class Remote : MonoBehaviour {
      * 3 - ignored
     */
     static public int takeRemote = 0;
-    
+
+    void Start()
+    {
+        text = Events.eventsTextAction[name];
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player" && takeRemote == 1)
